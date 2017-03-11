@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React - Thumbnail List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5 target"></div>
+    </div>
+</div>
+    <script type="text/babel">
+
+        // define a react component class
+        var Badge = React.createClass({
+            render: function() {
+                return(
+                    <button className="btn btn-primary" type="button">
+                        {this.props.title} <span className="badge">{this.props.number}</span>
+                    </button>
+                )
+            }
+        });
+
+        var Thumbnail = React.createClass({
+            render: function() {
+                return(
+                    <div className="thumbnail">
+                        <img src={this.props.imageUrl} />
+                            <div className="caption">
+                                <h3>{this.props.header}</h3>
+                                <p>{this.props.description}</p>
+                                <p>
+                                    <Badge title={this.props.title} number={this.props.number} />
+                                </p>
+                            </div>
+                    </div>
+                )
+            }
+        });
+
+        var ThumbnailList = React.createClass({
+            render: function () {
+                var list = this.props.thumbnailData.map(function (thumbnailProps, index) { // needed to add index parameter to use as a key as React requires keys for lists
+                    return <Thumbnail key={index} {...thumbnailProps} /> // "..." syntax is a React shortcut to just pass all props of passed in object
+                });
+
+                return(
+                    <div>
+                        {list}
+                    </div>
+                )
+            }
+        });
+
+        // "options" will hold our props and will be passed as second argument when creating the React Element
+        var options = {
+            thumbnailData: [
+                {
+                    title: "Show Courses",
+                    number: 12,
+                    imageUrl: 'https://formatjs.io/img/react.svg',
+                    header: "Learn React",
+                    description: "React is a fantastic new library for making fast, dynamic pages. It's was created by FaceBook and is super fast and fun to use!"
+                },
+                {
+                    title: "Show Courses",
+                    number: 6,
+                    imageUrl: 'https://avatars0.githubusercontent.com/u/6200624?v=3&s=400',
+                    header: "Learn Gulp",
+                    description: "Gulp will speed up your development workflow.  Gulp is super popular and has overtaken Grunt as the taskrunner of choice in many circles."
+                },
+            ]
+        };
+
+        // ask react to render this class
+        var element = React.createElement(ThumbnailList, options);
+
+        // when we ask react to render this class, we will tell it
+        // where to place the rendered element in the DOM
+        ReactDOM.render(element, document.querySelector(".target"));
+
+
+    </script>
+</body>
+</html>
