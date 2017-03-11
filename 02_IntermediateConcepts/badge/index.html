@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React - First App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+        // define a react component class
+        var Badge = React.createClass({
+            render: function() {
+                return(
+                    <button className="btn btn-primary" type="button">
+                        {this.props.title} <span className="badge">{this.props.number}</span>
+                    </button>
+                )
+            }
+        });
+
+        var options = {
+            title: "Inbox",
+            number: 32
+        };
+
+        // ask react to render this class
+        var element = React.createElement(Badge, options);
+
+        // when we ask react to render this class, we will tell it
+        // where to place the rendered element in the DOM
+        ReactDOM.render(element, document.getElementById("app"));
+
+
+    </script>
+</body>
+</html>
