@@ -16,5 +16,3 @@ var Thumbnail = React.createClass({
         )
     }
 });
-
-module.exports = Thumbnail;

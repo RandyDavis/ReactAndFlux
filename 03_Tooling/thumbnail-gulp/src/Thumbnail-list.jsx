@@ -11,5 +11,3 @@ var ThumbnailList = React.createClass({
         )
     }
 });
-
-module.exports = ThumbnailList;
