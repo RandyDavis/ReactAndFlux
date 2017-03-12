@@ -1,3 +1,7 @@
+var React = require('react');
+// var ReactDOM = require('react-dom');
+var ThumbnailList = require('./thumbnail-list');
+
 // "options" will hold our props and will be passed as second argument when creating the React Element
 var options = {
     thumbnailData: [
