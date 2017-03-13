@@ -4,6 +4,7 @@
 
 var React = require('react');
 var Button = require('./Button');
+var ListItem = require('./List-Item');
 // var List = require('./list');
 
 var Dropdown = React.createClass({
@@ -11,6 +12,10 @@ var Dropdown = React.createClass({
         console.log('hello from dropdown');
    },
    render: function () {
+       var list = this.props.items.map(function (item, index) {
+           return <ListItem key={index} item={item} />;
+       });
+
        return(
            <div className="dropdown">
                 <Button
@@ -19,6 +24,9 @@ var Dropdown = React.createClass({
                     title={this.props.title}
                     subTitleClassName="caret"
                 />
+               <ul>
+                   {list}
+               </ul>
            </div>
        )
    }
