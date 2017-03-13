@@ -1,9 +1,12 @@
 var React = require('react');
 
 var ListItem = React.createClass({
+    handleClick: function () {
+        this.props.whenItemClicked(this.props.item);
+    },
     render: function () {
         return(
-            <li><a href="#">{this.props.item}</a></li>
+            <li className={this.props.className}><a href="#" onClick={this.handleClick}>{this.props.item}</a></li>
         )
     }
 });
